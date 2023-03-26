@@ -25,16 +25,56 @@
 			font-size: 4em;
 		}
 	}
+
+	.Error404 {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.Error404-image figure {
+		margin: 0;
+		padding: 0;
+		text-align: right;
+	}
+
+	.Error404-image img {
+		width: 250px;
+		margin: 2em 0 0 0;
+		transform: translateY(0px);
+		animation: float 8s ease-in-out infinite;
+	}
+
+	@keyframes float {
+		0% {
+			transform: translateY(0px);
+		}
+		50% {
+			transform: translateY(-40px);
+		}
+		100% {
+			transform: translateY(0px);
+		}
+	}
 </style>
 
 <svelte:head>
 	<title>{status}</title>
 </svelte:head>
 
-<h1>{status}</h1>
+<div class="Error404">
+	<div class="Error404-message">
+		<h1>{status}</h1>
 
-<p>{error.message}</p>
+		<p>{error.message}</p>
 
-{#if dev && error.stack}
-	<pre>{error.stack}</pre>
-{/if}
+		{#if dev && error.stack}
+			<pre>{error.stack}</pre>
+		{/if}
+	</div>	
+	<div class="Error404-image">
+		<figure>
+			<img src="img404.png" alt="error 404">
+		</figure>
+	</div>
+</div>
